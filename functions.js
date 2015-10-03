@@ -9,7 +9,7 @@ module.exports = {
   },
 
   moveBack: function(drone, time, speed, callback){
-    drone.backword(speed);
+    drone.backward(speed);
     setTimeout(function(){
       callback();
     }, time);
