@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "_events-stream": "~0.2.0",
-    "twitter": "~1.2.5"
+    "twitter": "~1.2.5",
     "node-sumo": "git+https://github.com/forgeByAcision/node-sumo"
   },
   "devDependencies": {
