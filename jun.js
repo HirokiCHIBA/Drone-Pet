@@ -8,11 +8,18 @@ var pA_pS = 3300;
 var pB_pA = 3600;
 
 var twitter = require('./tweet.js');
+
+var texts = [
+  "たのしー",
+  "なにかあるにゃん",
+  "ハッカソンすきにゃん"
+];
+
 var tweetFunc = function tweet() {
   var ev = new EventEmitter;
   setTimeout(function() {
     jun.takePicture();
-    twitter.tweet_with_image('Cテスト', 'sample.jpg', function() {
+    twitter.tweet_with_image(texts[ Math.floor( Math.random() * (texts.length) )], 'sample.jpg', function() {
       ev.emit('motion-done');
     });
   }, 1000);
