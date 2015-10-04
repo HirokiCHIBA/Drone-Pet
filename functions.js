@@ -6,8 +6,6 @@ function doneInSeconds(drone, time) {
   var ev = new EventEmitter;
   setTimeout(function() {
     drone.stop();
-  }, time - time * 0.4);
-  setTimeout(function() {
     ev.emit('motion-done');
   }, time);
   return ev;
@@ -16,7 +14,7 @@ function doneInSeconds(drone, time) {
 module.exports = {
   moveForward: function(drone, time, speed){
     return function() {
-      drone.forward(speed * 0.5);
+      drone.forward(speed);
       return doneInSeconds(drone, time);
     }
   },
