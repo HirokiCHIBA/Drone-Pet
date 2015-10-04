@@ -1,10 +1,25 @@
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"> 
+  <link type="text/css" href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<input id="message" type="text"><button id="send">send</button>
-<div id="output"></div>
+  <div class="container">
+    <h3>Droid Information</h3>
+    <p><span class="label label-default">Battery</span></p>
+    <div class="progress">
+      <!-- aria-valuenowを変える-->
+      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <p><span class="label label-default">Time</span><div id="time">Time</div></p>
+    <p><span class="label label-default">Time</span><div id="output2">Output2</div></p>
+    <p><span class="label label-default">Time</span><div id="output3">Output3</div></p>
+    <p><span class="label label-default">Time</span><div id="output4">Output4</div></p>
+  </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
 (function() {
 	var ws = new WebSocket("ws://localhost:8888");
@@ -52,5 +67,10 @@ recognition.addEventListener('result', function(event){
 recognition.start();
 
 </script>
+<style type="text/css">
+body{
+  margin-top: 20px;
+}
+</style>
 </body>
 </html>
