@@ -58,7 +58,7 @@ var motionFunctionsCollection = {
   'bigspin': [
     functions.coolSpinJump(jun, 3000)
   ],
-  'jump' [
+  'jump': [
     functions.jump(jun, 3000)
   ]
 };
