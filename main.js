@@ -1,7 +1,7 @@
 'use strict';
 
-const sumo = require('node-sumo');
-const functions = require('./functions.js');
+var sumo = require('./sumo-custom.js');
+var functions = require('./functions.js');
 
 var jun = sumo.createClient();
 
