@@ -278,6 +278,19 @@ Sumo.prototype.takePicture = function(opts)
   return this;
 };
 
+Sumo.prototype.startVideoStream = function()
+{
+  var buf = new Buffer(5);
+
+  buf.writeUInt8(constants.ARCOMMANDS_ID_PROJECT_JUMPINGSUMO, 0);
+  buf.writeUInt8(constants.ARCOMMANDS_ID_JUMPINGSUMO_CLASS_MEDIASTREAMING, 1);
+  buf.writeUInt16LE(constants.ARCOMMANDS_ID_JUMPINGSUMO_MEDIASTREAMING_CMD_VIDEOENABLE, 2);
+  buf.writeUInt8(constants.ARCOMMANDS_JUMPINGSUMO_MEDIASTREAMINGSTATE_VIDEOENABLECHANGED_ENABLED_ENABLED, 4);
+
+  this._writePacket(this._networkFrameGenerator(buf));
+  return this;
+}
+
 module.exports.constants = constants;
 
 module.exports.createClient = function(opts) {

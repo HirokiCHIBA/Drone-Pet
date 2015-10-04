@@ -7,10 +7,10 @@ var jun = sumo.createClient();
 
 // 最後以外は必ずEventEmitterのインスタンスを返す関数オブジェクト
 var motionFunctions = [
-  functions.moveForward(jun, 500, 100),
-  functions.moveBack(jun, 500, 100),
-  functions.moveRight(jun, 500, 90),
-  functions.moveLeft(jun, 500, 90),
+  functions.moveForward(jun, 1000, 127),
+  functions.moveBack(jun, 1000, 127),
+  functions.moveForward(jun, 1000, 127),
+  functions.moveBack(jun, 1000, 127),
   function() {jun.stop();}
 ];
 
