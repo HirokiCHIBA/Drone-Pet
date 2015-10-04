@@ -1,5 +1,6 @@
 var functions = require('./functions.js');
 var sumo = require('./sumo-custom.js');
+var exec = require('child_process').exec;
 var EventEmitter = require('events').EventEmitter;
 var jun = module.exports = sumo.createClient();
 
@@ -19,6 +20,7 @@ var tweetFunc = function tweet() {
   var ev = new EventEmitter;
   setTimeout(function() {
     jun.takePicture();
+    exec("afplay 'takepic.mp3' -r 1.4 -q 1");
     twitter.tweet_with_image(texts[ Math.floor( Math.random() * (texts.length) )], 'sample.jpg', function() {
       ev.emit('motion-done');
     });
