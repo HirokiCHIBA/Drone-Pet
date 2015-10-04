@@ -12,6 +12,11 @@
       <!-- aria-valuenowを変える-->
       <div class="battery progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%"></div>
     </div>
+    <p><span class="label label-default">なかよし度</span></p>
+		<div class="progress">
+      <!-- aria-valuenowを変える-->
+      <div class="nakayoshido progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+    </div>
     <p><span class="time label label-default">起動時間</span><div id="time">0秒</div></p>
     <p><span class="command-count label label-default">実行回数</span><div id="command-count"></div></p>
 		<button id="recog-start" class="btn btn-lg btn-primary">認識開始</button><br/>
@@ -49,6 +54,8 @@
 		} else if (data["commandCount"]) {
 			console.log("commandCount:" + data['commandCount']);
 			$("#command-count").text(data['commandCount']);
+			var per = (data['commandCount'] * 20 > 100) ? 100 : data['commandCount'] * 20;
+			$(".nakayoshido").css("width", per + "%");
 		}
 	};
 
@@ -93,11 +100,11 @@
 			console.log("send to server " + sound);
 			ws.send(JSON.stringify({"command": "jump"}));
 		}
-
+		
 		console.log("end recognition");
 		$("body").css("background-color", "#fff")
 	}, false);
-
+	
 	// 録音開始
 	// // スタートボタン開始
 	$("#recog-start").click(function() {
@@ -105,7 +112,7 @@
 		$("body").css("background-color", "#88ff88");
 		recognition.start();
 	});
-
+	
 	// スタートボタン終了
 	// $("#recog-end").click(function() {
 	// 	console.log("end recognition");
