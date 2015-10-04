@@ -55,7 +55,7 @@ var motionFunctionsCollection = {
     tweetFunc()
   ],
   'spin': [
-    functions.coolSpinJump(jun, 3000)
+    functions.coolSpin(jun, 3000)
   ],
   'bigspin': [
     functions.coolSpinJump(jun, 3000)

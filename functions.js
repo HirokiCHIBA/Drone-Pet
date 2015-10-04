@@ -1,6 +1,7 @@
 'use strict';
 
 var EventEmitter = require('events').EventEmitter;
+var exec = require('child_process').exec;
 
 function doneInSeconds(drone, time) {
   var ev = new EventEmitter;
@@ -48,6 +49,7 @@ module.exports = {
 
   jump: function(drone, time){
     return function(){
+      exec("afplay 'jump.mp3'");
       drone.animationsHighJump();
       return doneInSeconds(drone, time);
     }
@@ -55,11 +57,13 @@ module.exports = {
   coolSpin: function(drone, time){
      return function() {
        drone.animationsMetronome();
+      exec("afplay 'spin.mp3'");
        return doneInSeconds(drone, time);
      }
   },
   coolSpinJump: function(drone, time){
     return function(){
+      exec("afplay 'bigSpin.mp3'");
       drone.animationsMetronome();
       return doneInSeconds(drone, time);
     }
