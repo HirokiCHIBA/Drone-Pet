@@ -13,6 +13,9 @@ var plainHttpServer = http.createServer(function(req, res) {
 var webSocketServer = new WSServer({httpServer: plainHttpServer});
 var accept = ['localhost', '127.0.0.1'];
 
+var startupTime = new Date();
+var commandCount = 0;
+
 var wssConnections = [];
 jun.connect(function() {
   webSocketServer.on('request', function (req) {
@@ -24,12 +27,15 @@ jun.connect(function() {
     }
 
     var websocket = req.accept(null, req.origin);
-
     wssConnections.push(websocket);
+    websocket.send(JSON.stringify({"startupTime": startupTime}));
+
     websocket.on('message', function(msg) {
       var msgObj = JSON.parse(msg.utf8Data);
       if (typeof msgObj['command'] !== 'undefined') {
         jun.executeSecuence(msgObj['command'], 0);
+        commandCount++;
+        broadcast(JSON.stringify({"commandCount": commandCount}));
       }
       console.log('"' + msg.utf8Data + '" is recieved from ' + req.origin + '!');
     //  if (msg.utf8Data === 'Hello') {
