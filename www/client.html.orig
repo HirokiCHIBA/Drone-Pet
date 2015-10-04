@@ -14,8 +14,13 @@
     </div>
     <p><span class="time label label-default">起動時間</span><div id="time">0秒</div></p>
     <p><span class="command-count label label-default">実行回数</span><div id="command-count"></div></p>
+<<<<<<< HEAD
 		<button id="recog-start" class="btn btn-lg btn-primary">認識開始</button><br/>
 		<button id="recog-end" class="btn btn-lg btn-info">認識終了</button><br/>
+=======
+		<button class="btn btn-primary" id="recog-start">認識開始</button><br/>
+		<button class="btn btn-default" id="recog-end">認識終了</button><br/>
+>>>>>>> 3f4ca6fd603411077b6d9a5b448b4abb328b13d6
   </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -83,26 +88,16 @@
 			console.log("send to server");
 			var data = {"command": "hand"};
 			ws.send(JSON.stringify(data));
-		} else if (sound == "スピン") {
-			console.log("send to server " + sound);
-			ws.send(JSON.stringify({"command": "spin"}));
-		} else if (sound == "ビックスピン") {
-			console.log("send to server " + sound);
-			ws.send(JSON.stringify({"command": "bigspin"}));
-		} else if (sound == "ジャンプ") {
-			console.log("send to server " + sound);
-			ws.send(JSON.stringify({"command": "jump"}));
 		}
 
 		console.log("end recognition");
-		$("body").css("background-color", "#fff")
+
 	}, false);
 
 	// 録音開始
 	// // スタートボタン開始
 	$("#recog-start").click(function() {
 		console.log("satrt recognition");
-		$("body").css("background-color", "#88ff88");
 		recognition.start();
 	});
 
