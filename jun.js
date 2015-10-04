@@ -1,5 +1,6 @@
 var functions = require('./functions.js');
 var sumo = require('./sumo-custom.js');
+var exec = require('child_process').exec;
 var EventEmitter = require('events').EventEmitter;
 var jun = module.exports = sumo.createClient();
 
@@ -19,6 +20,7 @@ var tweetFunc = function tweet() {
   var ev = new EventEmitter;
   setTimeout(function() {
     jun.takePicture();
+    exec("afplay 'takepic.mp3' -r 1.4 -q 1");
     twitter.tweet_with_image(texts[ Math.floor( Math.random() * (texts.length) )], 'sample.jpg', function() {
       ev.emit('motion-done');
     });
@@ -50,21 +52,16 @@ var motionFunctionsCollection = {
     functions.delay(jun,1000),//マスターが椅子から下ろす
     ////--芸タイム--
     functions.coolSpinJump(jun,2000),//スピン
-<<<<<<< HEAD
-    //tweetFunc(),
-    function stop() {jun.stop();}
-=======
     tweetFunc()
   ],
   'spin': [
-    functions.coolSpinJump(jun, 3000)
+    functions.coolSpin(jun, 3000)
   ],
   'bigspin': [
     functions.coolSpinJump(jun, 3000)
   ],
-  'jump' [
+  'jump': [
     functions.jump(jun, 3000)
->>>>>>> 20251a5ec101fb4137069dc96fb03b6ef6e72759
   ]
 };
 
