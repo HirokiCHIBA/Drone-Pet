@@ -1,36 +1,48 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"> 
+  <link type="text/css" href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<input id="message" type="text"><button id="send">send</button>
-<button id="recog-start">認識開始</button><br/>
-<button id="recog-end">認識終了</button><br/>
-<div id="output"></div>
-
+  <div class="container">
+    <h3>Droid Information</h3>
+    <p><span class="label label-default">Battery</span></p>
+    <div class="progress">
+      <!-- aria-valuenowを変える-->
+      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <p><span class="label label-default">Time</span><div id="time">Time</div></p>
+    <p><span class="label label-default">Time</span><div id="output2">Output2</div></p>
+    <p><span class="label label-default">Time</span><div id="output3">Output3</div></p>
+    <p><span class="label label-default">Time</span><div id="output4">Output4</div></p>
+		<button id="recog-start">認識開始</button><br/>
+		<button id="recog-end">認識終了</button><br/>
+  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
 (function() {
 	var ws = new WebSocket("ws://localhost:8888");
 	var output = document.getElementById('output');
-	var send = document.getElementById('send');
+	// var send = document.getElementById('send');
 
 	function logStr(eventStr, msg) {
 		return '<div>' + eventStr + ':' + msg + '</div>';
 	}
 
-	send.addEventListener('click', function() {
-		var msg = document.getElementById('message').value;
-		ws.send(msg);
-		output.innerHTML += logStr('send', msg);
-	});
+	// send.addEventListener('click', function() {
+	// 	var msg = document.getElementById('message').value;
+	// 	ws.send(msg);
+	// 	output.innerHTML += logStr('send', msg);
+	// });
 
 	ws.onmessage = function(e) {
-		output.innerHTML += logStr('recieved', e.data);
+		// output.innerHTML += logStr('recieved', e.data);
 	};
 
 	ws.onclose = function (e) {
-		output.innerHTML += logStr('disconnect', e.code + ' - ' + e.type);
+		// output.innerHTML += logStr('disconnect', e.code + ' - ' + e.type);
 	};
 	
 	
@@ -76,5 +88,10 @@
 }());
 
 </script>
+<style type="text/css">
+body{
+  margin-top: 20px;
+}
+</style>
 </body>
 </html>

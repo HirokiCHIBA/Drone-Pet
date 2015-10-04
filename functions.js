@@ -1,6 +1,6 @@
 'use strict';
 
-const EventEmitter = require('events').EventEmitter;
+var EventEmitter = require('events').EventEmitter;
 
 function doneInSeconds(drone, time) {
   var ev = new EventEmitter;
