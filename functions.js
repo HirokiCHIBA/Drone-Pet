@@ -52,7 +52,12 @@ module.exports = {
       return doneInSeconds(drone, time);
     }
   },
-
+  coolSpin: function(drone, time){
+     return function() {
+       drone.animationsMetronome();
+       return doneInSeconds(drone, time);
+     }
+  },
   coolSpinJump: function(drone, time){
     return function(){
       drone.animationsMetronome();
