@@ -1,6 +1,6 @@
 var functions = require('./functions.js');
 var sumo = require('./sumo-custom.js');
-
+var EventEmitter = require('events').EventEmitter;
 var jun = module.exports = sumo.createClient();
 
 var twitter = require('./tweet.js');
@@ -35,9 +35,9 @@ var motionFunctionsCollection = {
 };
 
 jun.executeSecuence = function executeSecuence(command, offset) {
-  if (typeof motionFunctions[command][offset] === 'undefined') return;
+  if (typeof motionFunctionsCollection[command][offset] === 'undefined') return;
 
-  var mf = motionFunctions[command][offset].call();
+  var mf = motionFunctionsCollection[command][offset].call();
   if (typeof mf === 'undefined') return;
   mf.on('motion-done', function() {
     executeSecuence(command, offset + 1);

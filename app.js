@@ -13,7 +13,8 @@ var plainHttpServer = http.createServer(function(req, res) {
 var webSocketServer = new WSServer({httpServer: plainHttpServer});
 var accept = ['localhost', '127.0.0.1'];
 
-var startupTime = new Date();
+var time = new Date();
+var startupTime = time.getTime();
 var commandCount = 0;
 
 var wssConnections = [];

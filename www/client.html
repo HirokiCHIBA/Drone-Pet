@@ -43,9 +43,9 @@
 		if (data['battery']) {
 			console.log("battery:" + data['battery']);
 			$(".battery").css("width", data['battery'] + "%");
-		} else if (data['startUpTime']) {
-			console.log("time:" + data['startUpTime']);
-			startUpTime = data['startUpTime'];
+		} else if (data['startupTime']) {
+			console.log("time:" + data['startupTime']);
+			startUpTime = data['startupTime'];
 		} else if (data["commandCount"]) {
 			console.log("commandCount:" + data['commandCount']);
 			$("#command-count").text(data['commandCount']);
