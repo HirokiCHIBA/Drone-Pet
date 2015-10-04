@@ -1,8 +1,12 @@
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
 <input id="message" type="text"><button id="send">send</button>
+<button id="recog-start">認識開始</button><br/>
+<button id="recog-end">認識終了</button><br/>
 <div id="output"></div>
 
 <script>
@@ -28,28 +32,48 @@
 	ws.onclose = function (e) {
 		output.innerHTML += logStr('disconnect', e.code + ' - ' + e.type);
 	};
+	
+	
+	
+	// ====================================
+	// 音声認識
+	var soundon = false;
+	window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+	var recognition = new webkitSpeechRecognition();
+	recognition.lang = 'ja';
+
+	// 録音終了時トリガー
+	recognition.addEventListener('result', function(event){
+	
+		// alert(event.results.item(0).item(0).transcript)
+		var sound = event.results.item(0).item(0).transcript
+		
+		console.log(sound)
+		
+		if (sound == "お手") {
+			console.log("send to server");
+			var data = {"command": "hand"};
+			ws.send(JSON.stringify(data));
+		}
+		
+		console.log("end recognition");
+		
+	}, false);
+ 
+	// 録音開始
+	// // スタートボタン開始
+	$("#recog-start").click(function() {
+		console.log("satrt recognition");
+		recognition.start();
+	});
+
+	// スタートボタン終了
+	// $("#recog-end").click(function() {
+	// 	console.log("end recognition");
+	// 	recognition.end();
+	// });
+	
 }());
-
-
-// ====================================
-// 音声認識
-
-// TODO: スタート
-// TODO: ボタン
-// TODO: setTimeout
-
-window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-var recognition = new webkitSpeechRecognition();
-recognition.lang = 'ja';
- 
-// 録音終了時トリガー
-recognition.addEventListener('result', function(event){
-	// alert(event.results.item(0).item(0).transcript)
-	console.log(event.results.item(0).item(0).transcript);
-}, false);
- 
-// 録音開始
-recognition.start();
 
 </script>
 </body>
