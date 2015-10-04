@@ -86,11 +86,11 @@
 
 		console.log(sound)
 
-		if (sound == "お手") {
+		if (sound == "スタート") {
 			console.log("send to server");
 			var data = {"command": "hand"};
 			ws.send(JSON.stringify(data));
-		} else if (sound == "スピン") {
+		} else if (sound == "ピン"||sound == "スピン") {
 			console.log("send to server " + sound);
 			ws.send(JSON.stringify({"command": "spin"}));
 		} else if (sound == "ビックスピン") {

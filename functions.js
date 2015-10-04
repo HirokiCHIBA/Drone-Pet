@@ -55,18 +55,10 @@ module.exports = {
     }
   },
   coolSpin: function(drone, time){
-<<<<<<< HEAD
     return function() {
       drone.animationsSpin();
       return doneInSeconds(drone, time);
     }
-=======
-     return function() {
-       drone.animationsMetronome();
-      exec("afplay 'spin.mp3'");
-       return doneInSeconds(drone, time);
-     }
->>>>>>> fa5299192290502a0dc3c8bc82b845700a089ccd
   },
   coolSpinJump: function(drone, time){
     return function(){

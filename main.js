@@ -33,6 +33,7 @@ var motionFunctions = [
   functions.moveForward(jun, pB_pA, 40),//pBに移動する
   functions.delay(jun,1000),//マスターがカバンを置く
   functions.moveRight(jun,turn180Time,100),//回れ右
+  functions.delay(jun, 1000),
   functions.moveForward(jun, pB_pA, 40),//pAに移動する
   //-- 猫じゃらしタイム-- 
   functions.delay(jun,1000),//マスターが猫じゃらしを取る
@@ -41,12 +42,13 @@ var motionFunctions = [
   functions.delay(jun,1000),//マスターが猫じゃらしを片付ける
   ////--椅子タイム--
   functions.moveForward(jun, pA_pS, 40),//pSに移動する
+  functions.delay(jun, 1000),
   functions.moveLeft(jun,turn180Time/2,100),//90度回転=スクリーンを向く
   functions.jump(jun,2000),
   functions.delay(jun,1000),//マスターが椅子から下ろす
   ////--芸タイム--
   functions.coolSpinJump(jun,2000),//スピン
-  //tweetFunc(),
+  tweetFunc(),
   function stop() {jun.stop();}
   ];
 
