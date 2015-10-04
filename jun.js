@@ -38,9 +38,9 @@ var motionFunctionsCollection = {
     functions.delay(jun,1000),//マスターがカバンを置く
     functions.moveRight(jun,turn180Time,100),//回れ右
     functions.moveForward(jun, pB_pA, 40),//pAに移動する
-    //-- 猫じゃらしタイム-- 
+    //-- 猫じゃらしタイム--
     functions.delay(jun,1000),//マスターが猫じゃらしを取る
-    functions.moveRight(jun,turn180Time,100),//猫じゃらしに合わせて回転  
+    functions.moveRight(jun,turn180Time,100),//猫じゃらしに合わせて回転
     functions.moveRight(jun,turn180Time,100),//猫じゃらしに合わせて回転
     functions.delay(jun,1000),//マスターが猫じゃらしを片付ける
     ////--椅子タイム--
@@ -50,8 +50,16 @@ var motionFunctionsCollection = {
     functions.delay(jun,1000),//マスターが椅子から下ろす
     ////--芸タイム--
     functions.coolSpinJump(jun,2000),//スピン
-    tweetFunc();
-    function stop() {jun.stop();}
+    tweetFunc()
+  ],
+  'spin': [
+    functions.coolSpinJump(jun, 3000)
+  ],
+  'bigspin': [
+    functions.coolSpinJump(jun, 3000)
+  ],
+  'jump' [
+    functions.jump(jun, 3000)
   ]
 };
 
