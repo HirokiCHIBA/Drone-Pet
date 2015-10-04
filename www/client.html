@@ -1,0 +1,56 @@
+<html>
+<head>
+</head>
+<body>
+<input id="message" type="text"><button id="send">send</button>
+<div id="output"></div>
+
+<script>
+(function() {
+	var ws = new WebSocket("ws://localhost:8888");
+	var output = document.getElementById('output');
+	var send = document.getElementById('send');
+
+	function logStr(eventStr, msg) {
+		return '<div>' + eventStr + ':' + msg + '</div>';
+	}
+
+	send.addEventListener('click', function() {
+		var msg = document.getElementById('message').value;
+		ws.send(msg);
+		output.innerHTML += logStr('send', msg);
+	});
+
+	ws.onmessage = function(e) {
+		output.innerHTML += logStr('recieved', e.data);
+	};
+
+	ws.onclose = function (e) {
+		output.innerHTML += logStr('disconnect', e.code + ' - ' + e.type);
+	};
+}());
+
+
+// ====================================
+// 音声認識
+
+// TODO: スタート
+// TODO: ボタン
+// TODO: setTimeout
+
+window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+var recognition = new webkitSpeechRecognition();
+recognition.lang = 'ja';
+ 
+// 録音終了時トリガー
+recognition.addEventListener('result', function(event){
+	// alert(event.results.item(0).item(0).transcript)
+	console.log(event.results.item(0).item(0).transcript);
+}, false);
+ 
+// 録音開始
+recognition.start();
+
+</script>
+</body>
+</html>
