@@ -1,9 +1,23 @@
 'use strict';
 
+const EventEmitter = require('events').EventEmitter;
+
 var sumo = require('./sumo-custom.js');
 var functions = require('./functions.js');
+var twitter = require('./tweet.js');
 
 var jun = sumo.createClient();
+
+var tweetFunc = function tweet() {
+  var ev = new EventEmitter;
+  setTimeout(function() {
+    jun.takePicture();
+    twitter.tweet_with_image('Cテスト', 'sample.jpg', function() {
+      ev.emit('motion-done');
+    });
+  }, 1000);
+  return ev;
+}
 
 // 最後以外は必ずEventEmitterのインスタンスを返す関数オブジェクト
 var motionFunctions = [
@@ -11,7 +25,8 @@ var motionFunctions = [
   functions.moveBack(jun, 1000, 127),
   functions.moveForward(jun, 1000, 127),
   functions.moveBack(jun, 1000, 127),
-  function() {jun.stop();}
+  tweetFunc,
+  function stop() {jun.stop();}
 ];
 
 function executeSecuence(offset) {

@@ -24,15 +24,15 @@ var base64 = require('node-base64-image');
 
 
 module.exports = {
-  
+
   screen_name: 'mi_ni_drones',
 
   tweet: function(message, callback) {
-    
+
     var params = {
       status: message
     }
-    
+
     client.post('statuses/update', params, function(error, tweets, response){
       if (!error) {
         console.log(tweets);
@@ -40,25 +40,25 @@ module.exports = {
       callback(error, tweets, response);
     });
   },
-  
+
   tweet_with_image: function(message, image, callback) {
-    
+
     var image = fs.readFileSync(image);
     var params = {
     	screen_name: this.screen_name,
     	media_data: image.toString('base64')
     };
-    
+
     client.post('media/upload', params, function(error, tweets, response){
       if (error) {
         console.log(tweets);
       }
-      
+
       var params = {
         status: message,
         media_ids: tweets.media_id_string
       }
-      
+
       client.post('statuses/update', params,  function(error, tweet, response){
         if(error) {
           console.log(error)
