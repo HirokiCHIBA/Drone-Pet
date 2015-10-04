@@ -10,7 +10,7 @@ var jun = sumo.createClient();
 
 var turn180Time = 360;
 var pA_pS = 3300;
-var pB_pA = 3600;
+var pB_pA = 3400;
 
 var tweetFunc = function tweet() {
   var ev = new EventEmitter;
@@ -27,8 +27,7 @@ var tweetFunc = function tweet() {
 var motionFunctions = [
   functions.moveForward(jun, pA_pS, 40),//pAに移動する
   functions.delay(jun,1000),
-  functions.moveRight(jun,turn180Time*2,100),//マスターに会えて嬉しい
-  functions.delay(jun,1000),//マスターが撫でてくれる
+  functions.coolSpin()
   functions.moveRight(jun,turn180Time,100),//回れ右
   functions.moveForward(jun, pB_pA, 40),//pBに移動する
   functions.delay(jun,1000),//マスターがカバンを置く
