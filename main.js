@@ -10,9 +10,12 @@ var jun = sumo.createClient();
 
 var tweetFunc = function tweet() {
   var ev = new EventEmitter;
-  twitter.tweet_with_image('Cテスト', 'sample.jpg', function() {
-    ev.emit('motion-done');
-  });
+  setTimeout(function() {
+    jun.takePicture();
+    twitter.tweet_with_image('Cテスト', 'sample.jpg', function() {
+      ev.emit('motion-done');
+    });
+  }, 1000);
   return ev;
 }
 
