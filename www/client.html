@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
   <link type="text/css" href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -14,8 +14,8 @@
     </div>
     <p><span class="time label label-default">起動時間</span><div id="time">0秒</div></p>
     <p><span class="command-count label label-default">実行回数</span><div id="command-count"></div></p>
-		<button id="recog-start">認識開始</button><br/>
-		<button id="recog-end">認識終了</button><br/>
+		<button id="recog-start" class="btn btn-lg btn-primary">認識開始</button><br/>
+		<button id="recog-end" class="btn btn-lg btn-info">認識終了</button><br/>
   </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -36,7 +36,7 @@
 	// });
 
 	var	startUpTime = 0;
-	
+
 	ws.onmessage = function(e) {
 		// output.innerHTML += logStr('recieved', e.data);
 		var data = JSON.parse(e.data);
@@ -55,15 +55,15 @@
 	ws.onclose = function (e) {
 		// output.innerHTML += logStr('disconnect', e.code + ' - ' + e.type);
 	};
-	
+
 	setInterval(function() {
 		if (startUpTime != 0) {
 			$("#time").text(Math.round((new Date().getTime() - startUpTime) / 1000) + "秒");
 		}
 	}, 1000);
-	
-	
-	
+
+
+
 	// ====================================
 	// 音声認識
 	var soundon = false;
@@ -73,22 +73,22 @@
 
 	// 録音終了時トリガー
 	recognition.addEventListener('result', function(event){
-	
+
 		// alert(event.results.item(0).item(0).transcript)
 		var sound = event.results.item(0).item(0).transcript
-		
+
 		console.log(sound)
-		
+
 		if (sound == "お手") {
 			console.log("send to server");
 			var data = {"command": "hand"};
 			ws.send(JSON.stringify(data));
 		}
-		
+
 		console.log("end recognition");
-		
+
 	}, false);
- 
+
 	// 録音開始
 	// // スタートボタン開始
 	$("#recog-start").click(function() {
@@ -101,7 +101,7 @@
 	// 	console.log("end recognition");
 	// 	recognition.end();
 	// });
-	
+
 }());
 
 </script>
