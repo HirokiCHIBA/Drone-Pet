@@ -90,21 +90,21 @@
 			console.log("send to server");
 			var data = {"command": "hand"};
 			ws.send(JSON.stringify(data));
-		} else if (sound == "ピン"||sound == "スピン") {
+    } else if (sound.contains("ビック") {
+      console.log("send to server " + sound);
+      ws.send(JSON.stringify({"command": "bigspin"}));
+		} else if (sound.contains("ピン")) {
 			console.log("send to server " + sound);
 			ws.send(JSON.stringify({"command": "spin"}));
-		} else if (sound == "ビックスピン") {
-			console.log("send to server " + sound);
-			ws.send(JSON.stringify({"command": "bigspin"}));
-		} else if (sound == "ジャンプ") {
+		} else if (sound.contains("ジャンプ")) {
 			console.log("send to server " + sound);
 			ws.send(JSON.stringify({"command": "jump"}));
 		}
-		
+
 		console.log("end recognition");
 		$("body").css("background-color", "#fff")
 	}, false);
-	
+
 	// 録音開始
 	// // スタートボタン開始
 	$("#recog-start").click(function() {
@@ -112,7 +112,7 @@
 		$("body").css("background-color", "#88ff88");
 		recognition.start();
 	});
-	
+
 	// スタートボタン終了
 	// $("#recog-end").click(function() {
 	// 	console.log("end recognition");
