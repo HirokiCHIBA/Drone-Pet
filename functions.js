@@ -42,21 +42,21 @@ module.exports = {
 
   delay: function(drone, time){
     return function(){
-      return doInSeconds(drone, time);
+      return doneInSeconds(drone, time);
     }
   },
 
   jump: function(drone, time){
     return function(){
       drone.animationsHighJump();
-      return doInSeconds(drone, time);
+      return doneInSeconds(drone, time);
     }
   },
 
   coolSpinJump: function(drone, time){
     return function(){
       drone.animationsMetronome();
-      return doInSeconds(drone, time);
+      return doneInSeconds(drone, time);
     }
   },
 

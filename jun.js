@@ -50,7 +50,7 @@ var motionFunctionsCollection = {
     functions.delay(jun,1000),//マスターが椅子から下ろす
     ////--芸タイム--
     functions.coolSpinJump(jun,2000),//スピン
-    tweetFunc();
+    //tweetFunc(),
     function stop() {jun.stop();}
   ]
 };
